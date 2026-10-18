@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Repository
+
 public class InMemoryExpenseRepository implements ExpenseRepository {
 
     private final AtomicInteger nextId;

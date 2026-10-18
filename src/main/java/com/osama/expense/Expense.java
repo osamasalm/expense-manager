@@ -1,10 +1,18 @@
 package com.osama.expense;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
 public class Expense {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     // amount is the total price for all quantity NOT the price of a single item.
@@ -13,12 +21,21 @@ public class Expense {
     private int quantity;
     private String place;
 
+    protected Expense() {
+
+    }
+
     public Expense(String name, BigDecimal amount, LocalDate date, int quantity, String place) {
         this.name = name;
         this.amount = amount;
         this.date = date;
         this.quantity = quantity;
-        this.place = place;
+        if (place == null) {
+            this.place = "";
+        } else {
+            this.place = place;
+        }
+
     }
 
     public int getId() {
@@ -66,7 +83,11 @@ public class Expense {
     }
 
     public void setPlace(String place) {
-        this.place = place;
+        if (place == null) {
+            this.place = "";
+        } else {
+            this.place = place;
+        }
     }
 
     @Override
